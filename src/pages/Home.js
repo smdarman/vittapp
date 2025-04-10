@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import SupplementVoting from '../components/SupplementVoting';
 
 const vitamins = [
   { 
@@ -186,6 +187,8 @@ const vitamins = [
 function Home() {
   const [vitaminRatings, setVitaminRatings] = useState(vitamins);
   const [sortBy, setSortBy] = useState('evidenceStrength');
+  const [email, setEmail] = useState('');
+  const [subscriptionStatus, setSubscriptionStatus] = useState('');
 
   // Load saved ratings from localStorage
   useEffect(() => {
@@ -225,72 +228,176 @@ function Home() {
     });
   };
 
+  const handleSubscribe = (e) => {
+    e.preventDefault();
+    if (email) {
+      // Here you would typically make an API call to save the email
+      setSubscriptionStatus('success');
+      setEmail('');
+      setTimeout(() => setSubscriptionStatus(''), 3000);
+    }
+  };
+
+  const handleVoteUpdate = (updatedSupplements) => {
+    // Find the supplement with the most votes
+    const highestVoted = updatedSupplements.reduce((prev, current) => 
+      (prev.votes > current.votes) ? prev : current
+    );
+
+    // Find the supplement with the lowest evidence strength and user rating
+    const lowestRated = [...vitaminRatings].sort((a, b) => {
+      const scoreA = (a.evidenceStrength + a.userRating) / 2;
+      const scoreB = (b.evidenceStrength + b.userRating) / 2;
+      return scoreA - scoreB;
+    })[0];
+
+    // If the highest voted supplement has more than 10 votes and the lowest rated supplement
+    // has a combined score (evidence + user rating) less than 70, replace it
+    if (highestVoted.votes >= 10 && ((lowestRated.evidenceStrength + lowestRated.userRating) / 2) < 70) {
+      const newSupplement = {
+        ...highestVoted,
+        id: lowestRated.id,
+        color: lowestRated.color,
+        evidenceStrength: 75, // Default evidence strength for new supplements
+        userRating: 0,
+        evidenceDescription: highestVoted.evidenceDescription
+      };
+
+      // Update the main supplements list
+      const updatedVitaminRatings = vitaminRatings.map(vitamin =>
+        vitamin.id === lowestRated.id ? newSupplement : vitamin
+      );
+      setVitaminRatings(updatedVitaminRatings);
+      
+      // Save to localStorage
+      localStorage.setItem('vitaminRatings', JSON.stringify(updatedVitaminRatings));
+
+      // Reset the votes for the newly added supplement and update localStorage
+      const resetSupplements = updatedSupplements.map(supplement =>
+        supplement.id === highestVoted.id ? { ...supplement, votes: 0 } : supplement
+      );
+      localStorage.setItem('supplementVotes', JSON.stringify(resetSupplements));
+      
+      // Clear the voted status for the replaced supplement
+      const votedSupplements = JSON.parse(localStorage.getItem('votedSupplements') || '[]');
+      const updatedVotedSupplements = votedSupplements.filter(id => id !== highestVoted.id);
+      localStorage.setItem('votedSupplements', JSON.stringify(updatedVotedSupplements));
+    }
+  };
+
   return (
     <div className="home-page">
-      <h1>Top 10 Vitamins & Supplements</h1>
-      
-      <div className="controls-section">
-        <div className="sort-controls">
-          <label htmlFor="sort-select">Sort by:</label>
-          <select 
-            id="sort-select"
-            value={sortBy} 
-            onChange={(e) => setSortBy(e.target.value)}
-            className="sort-select"
-          >
-            <option value="evidenceStrength">Evidence Strength (Highest to Lowest)</option>
-            <option value="userRating">User Rating (Highest to Lowest)</option>
-            <option value="name">Alphabetically (A-Z)</option>
-          </select>
-        </div>
-      </div>
+      <section className="hero-section">
+        <h1>Vitamin Guide</h1>
+        <p className="hero-description">
+          Your trusted source for evidence-based information about vitamins and supplements.
+          We help you make informed decisions about your health and wellness journey.
+        </p>
+      </section>
 
-      <div className="vitamin-grid">
-        {getSortedVitamins().map((vitamin) => (
-          <div
-            key={vitamin.id}
-            className="vitamin-box"
-            style={{ backgroundColor: vitamin.color }}
-          >
-            <h3>{vitamin.name}</h3>
-            <div className="vitamin-category">{vitamin.category}</div>
-            
-            <div className="rating-section">
-              <div className="evidence-rating">
-                <label>Evidence Strength:</label>
-                <div className="progress-bar">
-                  <div 
-                    className="progress-fill"
-                    style={{ width: `${vitamin.evidenceStrength}%` }}
-                  >
-                    {vitamin.evidenceStrength}%
+      <section className="features-section">
+        <div className="feature-card">
+          <h3>Evidence-Based</h3>
+          <p>All information is backed by scientific research and clinical studies</p>
+        </div>
+        <div className="feature-card">
+          <h3>User Ratings</h3>
+          <p>Share your experience and help others make better choices</p>
+        </div>
+        <div className="feature-card">
+          <h3>Top 20 Supplements</h3>
+          <p>Curated list of the most effective and popular supplements</p>
+        </div>
+      </section>
+
+      <section className="newsletter-section">
+        <h2>Stay Updated</h2>
+        <p>Subscribe to our newsletter for the latest research and supplement updates</p>
+        <form onSubmit={handleSubscribe} className="newsletter-form">
+          <input
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Enter your email"
+            required
+            className="newsletter-input"
+          />
+          <button type="submit" className="newsletter-button">
+            Subscribe
+          </button>
+        </form>
+        {subscriptionStatus === 'success' && (
+          <p className="success-message">Thank you for subscribing!</p>
+        )}
+      </section>
+
+      <section className="supplements-section">
+        <h2>Top 20 Supplements</h2>
+        <div className="controls-section">
+          <div className="sort-controls">
+            <label htmlFor="sort-select">Sort by:</label>
+            <select 
+              id="sort-select"
+              value={sortBy} 
+              onChange={(e) => setSortBy(e.target.value)}
+              className="sort-select"
+            >
+              <option value="evidenceStrength">Evidence Strength (Highest to Lowest)</option>
+              <option value="userRating">User Rating (Highest to Lowest)</option>
+              <option value="name">Alphabetically (A-Z)</option>
+            </select>
+          </div>
+        </div>
+
+        <div className="vitamin-grid">
+          {getSortedVitamins().map((vitamin) => (
+            <div
+              key={vitamin.id}
+              className="vitamin-box"
+              style={{ backgroundColor: vitamin.color }}
+            >
+              <h3>{vitamin.name}</h3>
+              <div className="vitamin-category">{vitamin.category}</div>
+              
+              <div className="rating-section">
+                <div className="evidence-rating">
+                  <label>Evidence Strength:</label>
+                  <div className="progress-bar">
+                    <div 
+                      className="progress-fill"
+                      style={{ width: `${vitamin.evidenceStrength}%` }}
+                    >
+                      {vitamin.evidenceStrength}%
+                    </div>
+                  </div>
+                  <p className="evidence-description">{vitamin.evidenceDescription}</p>
+                </div>
+
+                <div className="user-rating">
+                  <label>Your Rating:</label>
+                  <div className="star-rating">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <button
+                        key={star}
+                        className={`star ${vitamin.userRating >= star ? 'active' : ''}`}
+                        onClick={() => handleRatingChange(vitamin.id, star)}
+                      >
+                        ★
+                      </button>
+                    ))}
                   </div>
                 </div>
-                <p className="evidence-description">{vitamin.evidenceDescription}</p>
               </div>
 
-              <div className="user-rating">
-                <label>Your Rating:</label>
-                <div className="star-rating">
-                  {[1, 2, 3, 4, 5].map((star) => (
-                    <button
-                      key={star}
-                      className={`star ${vitamin.userRating >= star ? 'active' : ''}`}
-                      onClick={() => handleRatingChange(vitamin.id, star)}
-                    >
-                      ★
-                    </button>
-                  ))}
-                </div>
-              </div>
+              <a href={`/vitamin/${vitamin.id}`} className="info-link">
+                Learn More
+              </a>
             </div>
+          ))}
+        </div>
+      </section>
 
-            <a href={`/vitamin/${vitamin.id}`} className="info-link">
-              Learn More
-            </a>
-          </div>
-        ))}
-      </div>
+      <SupplementVoting onVoteUpdate={handleVoteUpdate} />
     </div>
   );
 }

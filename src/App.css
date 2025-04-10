@@ -201,3 +201,57 @@ h1 {
 .star.active {
   color: #ffd700;
 }
+
+/* Controls Section Styles */
+.controls-section {
+  max-width: 1200px;
+  margin: 0 auto 30px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.sort-controls {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  justify-content: center;
+}
+
+.sort-controls label {
+  font-weight: 500;
+  color: #333;
+}
+
+.sort-select {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: white;
+  font-size: 0.9rem;
+  color: #333;
+  cursor: pointer;
+  min-width: 250px;
+  transition: border-color 0.2s ease;
+}
+
+.sort-select:hover {
+  border-color: #2c3e50;
+}
+
+.sort-select:focus {
+  outline: none;
+  border-color: #2c3e50;
+  box-shadow: 0 0 0 2px rgba(44, 62, 80, 0.1);
+}
+
+.vitamin-category {
+  display: inline-block;
+  padding: 4px 12px;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 15px;
+  font-size: 0.8rem;
+  color: #666;
+  margin: 5px 0;
+}

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const vitamins = [
   { 
@@ -7,7 +7,8 @@ const vitamins = [
     color: '#FFB6C1',
     evidenceStrength: 95, // Percentage based on clinical studies
     userRating: 0, // Will be updated by user input
-    evidenceDescription: 'Strong clinical evidence for bone health and immune function'
+    evidenceDescription: 'Strong clinical evidence for bone health and immune function',
+    category: 'Fat-soluble'
   },
   { 
     id: 2, 
@@ -15,7 +16,8 @@ const vitamins = [
     color: '#98FB98',
     evidenceStrength: 85,
     userRating: 0,
-    evidenceDescription: 'Well-established benefits for immune system and skin health'
+    evidenceDescription: 'Well-established benefits for immune system and skin health',
+    category: 'Water-soluble'
   },
   { 
     id: 3, 
@@ -23,7 +25,8 @@ const vitamins = [
     color: '#87CEEB',
     evidenceStrength: 90,
     userRating: 0,
-    evidenceDescription: 'Strong evidence for neurological function and energy metabolism'
+    evidenceDescription: 'Strong evidence for neurological function and energy metabolism',
+    category: 'B-complex'
   },
   { 
     id: 4, 
@@ -31,7 +34,8 @@ const vitamins = [
     color: '#DDA0DD',
     evidenceStrength: 80,
     userRating: 0,
-    evidenceDescription: 'Good evidence for cognitive function and mood regulation'
+    evidenceDescription: 'Good evidence for cognitive function and mood regulation',
+    category: 'B-complex'
   },
   { 
     id: 5, 
@@ -39,7 +43,8 @@ const vitamins = [
     color: '#F0E68C',
     evidenceStrength: 75,
     userRating: 0,
-    evidenceDescription: 'Moderate evidence for antioxidant properties'
+    evidenceDescription: 'Moderate evidence for antioxidant properties',
+    category: 'Fat-soluble'
   },
   { 
     id: 6, 
@@ -47,7 +52,8 @@ const vitamins = [
     color: '#FFA07A',
     evidenceStrength: 85,
     userRating: 0,
-    evidenceDescription: 'Strong evidence for vision and immune function'
+    evidenceDescription: 'Strong evidence for vision and immune function',
+    category: 'Fat-soluble'
   },
   { 
     id: 7, 
@@ -55,7 +61,8 @@ const vitamins = [
     color: '#98FB98',
     evidenceStrength: 80,
     userRating: 0,
-    evidenceDescription: 'Good evidence for blood clotting and bone health'
+    evidenceDescription: 'Good evidence for blood clotting and bone health',
+    category: 'Fat-soluble'
   },
   { 
     id: 8, 
@@ -63,7 +70,8 @@ const vitamins = [
     color: '#D8BFD8',
     evidenceStrength: 70,
     userRating: 0,
-    evidenceDescription: 'Moderate evidence for cardiovascular health'
+    evidenceDescription: 'Moderate evidence for cardiovascular health',
+    category: 'B-complex'
   },
   { 
     id: 9, 
@@ -71,7 +79,8 @@ const vitamins = [
     color: '#E6E6FA',
     evidenceStrength: 75,
     userRating: 0,
-    evidenceDescription: 'Good evidence for energy metabolism'
+    evidenceDescription: 'Good evidence for energy metabolism',
+    category: 'B-complex'
   },
   { 
     id: 10, 
@@ -79,12 +88,27 @@ const vitamins = [
     color: '#B0E0E6',
     evidenceStrength: 70,
     userRating: 0,
-    evidenceDescription: 'Moderate evidence for cellular energy production'
+    evidenceDescription: 'Moderate evidence for cellular energy production',
+    category: 'B-complex'
   },
 ];
 
 function Home() {
   const [vitaminRatings, setVitaminRatings] = useState(vitamins);
+  const [sortBy, setSortBy] = useState('evidenceStrength');
+
+  // Load saved ratings from localStorage
+  useEffect(() => {
+    const savedRatings = localStorage.getItem('vitaminRatings');
+    if (savedRatings) {
+      setVitaminRatings(JSON.parse(savedRatings));
+    }
+  }, []);
+
+  // Save ratings to localStorage when they change
+  useEffect(() => {
+    localStorage.setItem('vitaminRatings', JSON.stringify(vitaminRatings));
+  }, [vitaminRatings]);
 
   const handleRatingChange = (vitaminId, newRating) => {
     setVitaminRatings(prevRatings => 
@@ -96,17 +120,50 @@ function Home() {
     );
   };
 
+  const getSortedVitamins = () => {
+    return [...vitaminRatings].sort((a, b) => {
+      switch (sortBy) {
+        case 'evidenceStrength':
+          return b.evidenceStrength - a.evidenceStrength;
+        case 'userRating':
+          return b.userRating - a.userRating;
+        case 'name':
+          return a.name.localeCompare(b.name);
+        default:
+          return 0;
+      }
+    });
+  };
+
   return (
     <div className="home-page">
       <h1>Top 10 Vitamins & Supplements</h1>
+      
+      <div className="controls-section">
+        <div className="sort-controls">
+          <label htmlFor="sort-select">Sort by:</label>
+          <select 
+            id="sort-select"
+            value={sortBy} 
+            onChange={(e) => setSortBy(e.target.value)}
+            className="sort-select"
+          >
+            <option value="evidenceStrength">Evidence Strength (Highest to Lowest)</option>
+            <option value="userRating">User Rating (Highest to Lowest)</option>
+            <option value="name">Alphabetically (A-Z)</option>
+          </select>
+        </div>
+      </div>
+
       <div className="vitamin-grid">
-        {vitaminRatings.map((vitamin) => (
+        {getSortedVitamins().map((vitamin) => (
           <div
             key={vitamin.id}
             className="vitamin-box"
             style={{ backgroundColor: vitamin.color }}
           >
             <h3>{vitamin.name}</h3>
+            <div className="vitamin-category">{vitamin.category}</div>
             
             <div className="rating-section">
               <div className="evidence-rating">

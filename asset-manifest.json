@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/vittapp/static/css/main.3fe216be.css",
-    "main.js": "/vittapp/static/js/main.122ebb1a.js",
+    "main.css": "/vittapp/static/css/main.19c23831.css",
+    "main.js": "/vittapp/static/js/main.2ed1572c.js",
     "static/js/787.c52a4006.chunk.js": "/vittapp/static/js/787.c52a4006.chunk.js",
     "index.html": "/vittapp/index.html",
-    "main.3fe216be.css.map": "/vittapp/static/css/main.3fe216be.css.map",
-    "main.122ebb1a.js.map": "/vittapp/static/js/main.122ebb1a.js.map",
+    "main.19c23831.css.map": "/vittapp/static/css/main.19c23831.css.map",
+    "main.2ed1572c.js.map": "/vittapp/static/js/main.2ed1572c.js.map",
     "787.c52a4006.chunk.js.map": "/vittapp/static/js/787.c52a4006.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.3fe216be.css",
-    "static/js/main.122ebb1a.js"
+    "static/css/main.19c23831.css",
+    "static/js/main.2ed1572c.js"
   ]
 }

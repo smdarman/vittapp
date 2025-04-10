@@ -91,6 +91,96 @@ const vitamins = [
     evidenceDescription: 'Moderate evidence for cellular energy production',
     category: 'B-complex'
   },
+  {
+    id: 11,
+    name: 'Creatine',
+    color: '#FFD700',
+    evidenceStrength: 95,
+    userRating: 0,
+    evidenceDescription: 'Strong evidence for muscle strength, power, and cognitive function',
+    category: 'Amino Acids'
+  },
+  {
+    id: 12,
+    name: 'Caffeine',
+    color: '#8B4513',
+    evidenceStrength: 90,
+    userRating: 0,
+    evidenceDescription: 'Strong evidence for improved alertness, focus, and athletic performance',
+    category: 'Stimulants'
+  },
+  {
+    id: 13,
+    name: 'Fish Oil',
+    color: '#00CED1',
+    evidenceStrength: 85,
+    userRating: 0,
+    evidenceDescription: 'Strong evidence for heart health and anti-inflammatory properties',
+    category: 'Omega-3'
+  },
+  {
+    id: 14,
+    name: 'Magnesium',
+    color: '#D2B48C',
+    evidenceStrength: 80,
+    userRating: 0,
+    evidenceDescription: 'Good evidence for sleep quality and muscle function',
+    category: 'Minerals'
+  },
+  {
+    id: 15,
+    name: 'Zinc',
+    color: '#DEB887',
+    evidenceStrength: 85,
+    userRating: 0,
+    evidenceDescription: 'Strong evidence for immune function and wound healing',
+    category: 'Minerals'
+  },
+  {
+    id: 16,
+    name: 'Probiotics',
+    color: '#FF69B4',
+    evidenceStrength: 75,
+    userRating: 0,
+    evidenceDescription: 'Moderate evidence for gut health and immune function',
+    category: 'Microorganisms'
+  },
+  {
+    id: 17,
+    name: 'CoQ10',
+    color: '#FF6347',
+    evidenceStrength: 70,
+    userRating: 0,
+    evidenceDescription: 'Moderate evidence for heart health and energy production',
+    category: 'Antioxidants'
+  },
+  {
+    id: 18,
+    name: 'Glucosamine',
+    color: '#98FB98',
+    evidenceStrength: 65,
+    userRating: 0,
+    evidenceDescription: 'Moderate evidence for joint health and mobility',
+    category: 'Joint Health'
+  },
+  {
+    id: 19,
+    name: 'Melatonin',
+    color: '#9370DB',
+    evidenceStrength: 80,
+    userRating: 0,
+    evidenceDescription: 'Good evidence for sleep regulation and jet lag',
+    category: 'Sleep'
+  },
+  {
+    id: 20,
+    name: 'Iron',
+    color: '#CD5C5C',
+    evidenceStrength: 85,
+    userRating: 0,
+    evidenceDescription: 'Strong evidence for blood health and energy levels',
+    category: 'Minerals'
+  }
 ];
 
 function Home() {

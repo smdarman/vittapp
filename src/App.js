@@ -9,7 +9,9 @@ function Navigation() {
   
   return (
     <nav className="navbar">
-      <div className="nav-brand">Vitamin Guide</div>
+      <Link to="/" className="nav-brand">
+        Vitamin Guide
+      </Link>
       <div className="nav-links">
         <Link to="/" className={`nav-link ${location.pathname === '/' ? 'active' : ''}`}>
           Home

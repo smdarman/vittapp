@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/vittapp/static/css/main.3fe216be.css",
+    "main.js": "/vittapp/static/js/main.7d0494ba.js",
+    "static/js/787.c52a4006.chunk.js": "/vittapp/static/js/787.c52a4006.chunk.js",
+    "index.html": "/vittapp/index.html",
+    "main.3fe216be.css.map": "/vittapp/static/css/main.3fe216be.css.map",
+    "main.7d0494ba.js.map": "/vittapp/static/js/main.7d0494ba.js.map",
+    "787.c52a4006.chunk.js.map": "/vittapp/static/js/787.c52a4006.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3fe216be.css",
+    "static/js/main.7d0494ba.js"
+  ]
+}

@@ -1,4 +1,5 @@
 import React from 'react';
+import ScoringSystem from './ScoringSystem';
 
 function About() {
   return (
@@ -31,6 +32,16 @@ function About() {
             carefully researched and regularly updated to reflect the latest scientific
             findings in the field of nutrition and supplementation.
           </p>
+        </section>
+
+        <section className="about-section">
+          <h2>Our Scoring System</h2>
+          <p>
+            To ensure transparency and consistency in our evaluations, we use a comprehensive
+            scoring system that considers multiple factors. This helps you understand how we
+            assess the effectiveness and reliability of different supplements.
+          </p>
+          <ScoringSystem />
         </section>
       </div>
     </div>

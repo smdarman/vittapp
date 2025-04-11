@@ -7,10 +7,13 @@ const vitamins = [
     id: 1, 
     name: 'Vitamin D', 
     color: '#FFB6C1',
-    evidenceStrength: 95, // Percentage based on clinical studies
-    userRating: 0, // Will be updated by user input
+    evidenceStrength: 95,
+    userRating: 0,
     evidenceDescription: 'Strong clinical evidence for bone health and immune function',
-    category: 'Fat-soluble'
+    category: 'Fat-soluble',
+    benefits: ['Bone health', 'Immune function', 'Mood regulation'],
+    dosage: '400-2000 IU daily',
+    safety: 'Generally safe at recommended doses'
   },
   { 
     id: 2, 
@@ -19,7 +22,10 @@ const vitamins = [
     evidenceStrength: 85,
     userRating: 0,
     evidenceDescription: 'Well-established benefits for immune system and skin health',
-    category: 'Water-soluble'
+    category: 'Water-soluble',
+    benefits: ['Immune support', 'Skin health', 'Antioxidant'],
+    dosage: '500-2000mg daily',
+    safety: 'Very safe, excess excreted in urine'
   },
   { 
     id: 3, 
@@ -28,7 +34,10 @@ const vitamins = [
     evidenceStrength: 90,
     userRating: 0,
     evidenceDescription: 'Strong evidence for neurological function and energy metabolism',
-    category: 'B-complex'
+    category: 'B-complex',
+    benefits: ['Energy production', 'Nerve function', 'Red blood cell formation'],
+    dosage: '2.4-1000mcg daily',
+    safety: 'Very safe, excess excreted'
   },
   { 
     id: 4, 
@@ -37,7 +46,10 @@ const vitamins = [
     evidenceStrength: 80,
     userRating: 0,
     evidenceDescription: 'Good evidence for cognitive function and mood regulation',
-    category: 'B-complex'
+    category: 'B-complex',
+    benefits: ['Brain function', 'Mood regulation', 'Protein metabolism'],
+    dosage: '1.3-100mg daily',
+    safety: 'Safe at recommended doses'
   },
   { 
     id: 5, 
@@ -46,7 +58,10 @@ const vitamins = [
     evidenceStrength: 75,
     userRating: 0,
     evidenceDescription: 'Moderate evidence for antioxidant properties',
-    category: 'Fat-soluble'
+    category: 'Fat-soluble',
+    benefits: ['Antioxidant', 'Skin health', 'Eye health'],
+    dosage: '15-400 IU daily',
+    safety: 'Safe at recommended doses'
   },
   { 
     id: 6, 
@@ -55,7 +70,10 @@ const vitamins = [
     evidenceStrength: 85,
     userRating: 0,
     evidenceDescription: 'Strong evidence for vision and immune function',
-    category: 'Fat-soluble'
+    category: 'Fat-soluble',
+    benefits: ['Vision', 'Immune function', 'Skin health'],
+    dosage: '700-900mcg daily',
+    safety: 'Caution with high doses'
   },
   { 
     id: 7, 
@@ -64,7 +82,10 @@ const vitamins = [
     evidenceStrength: 80,
     userRating: 0,
     evidenceDescription: 'Good evidence for blood clotting and bone health',
-    category: 'Fat-soluble'
+    category: 'Fat-soluble',
+    benefits: ['Blood clotting', 'Bone health', 'Heart health'],
+    dosage: '90-120mcg daily',
+    safety: 'Generally safe'
   },
   { 
     id: 8, 
@@ -73,7 +94,10 @@ const vitamins = [
     evidenceStrength: 70,
     userRating: 0,
     evidenceDescription: 'Moderate evidence for cardiovascular health',
-    category: 'B-complex'
+    category: 'B-complex',
+    benefits: ['Cholesterol management', 'Skin health', 'Brain function'],
+    dosage: '14-16mg daily',
+    safety: 'Safe at recommended doses'
   },
   { 
     id: 9, 
@@ -82,7 +106,10 @@ const vitamins = [
     evidenceStrength: 75,
     userRating: 0,
     evidenceDescription: 'Good evidence for energy metabolism',
-    category: 'B-complex'
+    category: 'B-complex',
+    benefits: ['Energy production', 'Nerve function', 'Heart health'],
+    dosage: '1.1-1.2mg daily',
+    safety: 'Very safe'
   },
   { 
     id: 10, 
@@ -91,7 +118,10 @@ const vitamins = [
     evidenceStrength: 70,
     userRating: 0,
     evidenceDescription: 'Moderate evidence for cellular energy production',
-    category: 'B-complex'
+    category: 'B-complex',
+    benefits: ['Energy production', 'Skin health', 'Eye health'],
+    dosage: '1.1-1.3mg daily',
+    safety: 'Very safe'
   },
   {
     id: 11,
@@ -100,7 +130,10 @@ const vitamins = [
     evidenceStrength: 95,
     userRating: 0,
     evidenceDescription: 'Strong evidence for muscle strength, power, and cognitive function',
-    category: 'Amino Acids'
+    category: 'Amino Acids',
+    benefits: ['Muscle strength', 'Power output', 'Cognitive function'],
+    dosage: '3-5g daily',
+    safety: 'Excellent safety profile'
   },
   {
     id: 12,
@@ -109,7 +142,10 @@ const vitamins = [
     evidenceStrength: 90,
     userRating: 0,
     evidenceDescription: 'Strong evidence for improved alertness, focus, and athletic performance',
-    category: 'Stimulants'
+    category: 'Stimulants',
+    benefits: ['Alertness', 'Focus', 'Athletic performance'],
+    dosage: '100-400mg daily',
+    safety: 'Safe at moderate doses'
   },
   {
     id: 13,
@@ -118,7 +154,10 @@ const vitamins = [
     evidenceStrength: 85,
     userRating: 0,
     evidenceDescription: 'Strong evidence for heart health and anti-inflammatory properties',
-    category: 'Omega-3'
+    category: 'Omega-3',
+    benefits: ['Heart health', 'Brain function', 'Anti-inflammatory'],
+    dosage: '250-1000mg daily',
+    safety: 'Generally safe'
   },
   {
     id: 14,
@@ -127,7 +166,10 @@ const vitamins = [
     evidenceStrength: 80,
     userRating: 0,
     evidenceDescription: 'Good evidence for sleep quality and muscle function',
-    category: 'Minerals'
+    category: 'Minerals',
+    benefits: ['Sleep quality', 'Muscle function', 'Stress management'],
+    dosage: '310-420mg daily',
+    safety: 'Safe at recommended doses'
   },
   {
     id: 15,
@@ -136,7 +178,10 @@ const vitamins = [
     evidenceStrength: 85,
     userRating: 0,
     evidenceDescription: 'Strong evidence for immune function and wound healing',
-    category: 'Minerals'
+    category: 'Minerals',
+    benefits: ['Immune function', 'Wound healing', 'Skin health'],
+    dosage: '8-11mg daily',
+    safety: 'Safe at recommended doses'
   },
   {
     id: 16,
@@ -145,7 +190,10 @@ const vitamins = [
     evidenceStrength: 75,
     userRating: 0,
     evidenceDescription: 'Moderate evidence for gut health and immune function',
-    category: 'Microorganisms'
+    category: 'Microorganisms',
+    benefits: ['Gut health', 'Immune function', 'Digestion'],
+    dosage: '1-10 billion CFU daily',
+    safety: 'Generally safe'
   },
   {
     id: 17,
@@ -154,7 +202,10 @@ const vitamins = [
     evidenceStrength: 70,
     userRating: 0,
     evidenceDescription: 'Moderate evidence for heart health and energy production',
-    category: 'Antioxidants'
+    category: 'Antioxidants',
+    benefits: ['Heart health', 'Energy production', 'Antioxidant'],
+    dosage: '100-200mg daily',
+    safety: 'Generally safe'
   },
   {
     id: 18,
@@ -163,7 +214,10 @@ const vitamins = [
     evidenceStrength: 65,
     userRating: 0,
     evidenceDescription: 'Moderate evidence for joint health and mobility',
-    category: 'Joint Health'
+    category: 'Joint Health',
+    benefits: ['Joint health', 'Mobility', 'Pain reduction'],
+    dosage: '1500mg daily',
+    safety: 'Generally safe'
   },
   {
     id: 19,
@@ -172,7 +226,10 @@ const vitamins = [
     evidenceStrength: 80,
     userRating: 0,
     evidenceDescription: 'Good evidence for sleep regulation and jet lag',
-    category: 'Sleep'
+    category: 'Sleep',
+    benefits: ['Sleep quality', 'Jet lag', 'Circadian rhythm'],
+    dosage: '0.5-5mg daily',
+    safety: 'Generally safe'
   },
   {
     id: 20,
@@ -181,13 +238,18 @@ const vitamins = [
     evidenceStrength: 85,
     userRating: 0,
     evidenceDescription: 'Strong evidence for blood health and energy levels',
-    category: 'Minerals'
+    category: 'Minerals',
+    benefits: ['Blood health', 'Energy levels', 'Cognitive function'],
+    dosage: '8-18mg daily',
+    safety: 'Caution with high doses'
   }
 ];
 
 function Home() {
   const [vitaminRatings, setVitaminRatings] = useState(vitamins);
   const [sortBy, setSortBy] = useState('evidenceStrength');
+  const [searchTerm, setSearchTerm] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState('all');
   const [email, setEmail] = useState('');
   const [subscriptionStatus, setSubscriptionStatus] = useState('');
 
@@ -214,8 +276,29 @@ function Home() {
     );
   };
 
-  const getSortedVitamins = () => {
-    return [...vitaminRatings].sort((a, b) => {
+  const getFilteredAndSortedVitamins = () => {
+    let filtered = vitaminRatings;
+
+    // Apply search filter
+    if (searchTerm) {
+      filtered = filtered.filter(vitamin =>
+        vitamin.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        vitamin.category.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        vitamin.benefits.some(benefit => 
+          benefit.toLowerCase().includes(searchTerm.toLowerCase())
+        )
+      );
+    }
+
+    // Apply category filter
+    if (selectedCategory !== 'all') {
+      filtered = filtered.filter(vitamin => 
+        vitamin.category.toLowerCase() === selectedCategory.toLowerCase()
+      );
+    }
+
+    // Apply sorting
+    return [...filtered].sort((a, b) => {
       switch (sortBy) {
         case 'evidenceStrength':
           return b.evidenceStrength - a.evidenceStrength;
@@ -232,59 +315,24 @@ function Home() {
   const handleSubscribe = (e) => {
     e.preventDefault();
     if (email) {
-      // Here you would typically make an API call to save the email
       setSubscriptionStatus('success');
       setEmail('');
       setTimeout(() => setSubscriptionStatus(''), 3000);
     }
   };
 
-  const handleVoteUpdate = (updatedSupplements) => {
-    // Find the supplement with the most votes
-    const highestVoted = updatedSupplements.reduce((prev, current) => 
-      (prev.votes > current.votes) ? prev : current
+  const handleVoteUpdate = (vitaminId, newVotes) => {
+    setVitaminRatings(prevRatings =>
+      prevRatings.map(vitamin =>
+        vitamin.id === vitaminId
+          ? { ...vitamin, votes: newVotes }
+          : vitamin
+      )
     );
-
-    // Find the supplement with the lowest evidence strength and user rating
-    const lowestRated = [...vitaminRatings].sort((a, b) => {
-      const scoreA = (a.evidenceStrength + a.userRating) / 2;
-      const scoreB = (b.evidenceStrength + b.userRating) / 2;
-      return scoreA - scoreB;
-    })[0];
-
-    // If the highest voted supplement has more than 10 votes and the lowest rated supplement
-    // has a combined score (evidence + user rating) less than 70, replace it
-    if (highestVoted.votes >= 10 && ((lowestRated.evidenceStrength + lowestRated.userRating) / 2) < 70) {
-      const newSupplement = {
-        ...highestVoted,
-        id: lowestRated.id,
-        color: lowestRated.color,
-        evidenceStrength: 75, // Default evidence strength for new supplements
-        userRating: 0,
-        evidenceDescription: highestVoted.evidenceDescription
-      };
-
-      // Update the main supplements list
-      const updatedVitaminRatings = vitaminRatings.map(vitamin =>
-        vitamin.id === lowestRated.id ? newSupplement : vitamin
-      );
-      setVitaminRatings(updatedVitaminRatings);
-      
-      // Save to localStorage
-      localStorage.setItem('vitaminRatings', JSON.stringify(updatedVitaminRatings));
-
-      // Reset the votes for the newly added supplement and update localStorage
-      const resetSupplements = updatedSupplements.map(supplement =>
-        supplement.id === highestVoted.id ? { ...supplement, votes: 0 } : supplement
-      );
-      localStorage.setItem('supplementVotes', JSON.stringify(resetSupplements));
-      
-      // Clear the voted status for the replaced supplement
-      const votedSupplements = JSON.parse(localStorage.getItem('votedSupplements') || '[]');
-      const updatedVotedSupplements = votedSupplements.filter(id => id !== highestVoted.id);
-      localStorage.setItem('votedSupplements', JSON.stringify(updatedVotedSupplements));
-    }
   };
+
+  // Get unique categories for filter dropdown
+  const categories = ['all', ...new Set(vitamins.map(v => v.category))];
 
   return (
     <div className="home-page">
@@ -335,6 +383,26 @@ function Home() {
       <section className="supplements-section">
         <h2>Top 20 Supplements</h2>
         <div className="controls-section">
+          <div className="search-controls">
+            <input
+              type="text"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              placeholder="Search supplements..."
+              className="search-input"
+            />
+            <select
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+              className="category-select"
+            >
+              {categories.map(category => (
+                <option key={category} value={category}>
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
+                </option>
+              ))}
+            </select>
+          </div>
           <div className="sort-controls">
             <label htmlFor="sort-select">Sort by:</label>
             <select 
@@ -351,7 +419,7 @@ function Home() {
         </div>
 
         <div className="vitamin-grid">
-          {getSortedVitamins().map((vitamin) => (
+          {getFilteredAndSortedVitamins().map((vitamin) => (
             <div
               key={vitamin.id}
               className="vitamin-box"
@@ -387,6 +455,21 @@ function Home() {
                       </button>
                     ))}
                   </div>
+                </div>
+              </div>
+
+              <div className="vitamin-details">
+                <h4>Key Benefits:</h4>
+                <ul className="benefits-list">
+                  {vitamin.benefits.map((benefit, index) => (
+                    <li key={index}>{benefit}</li>
+                  ))}
+                </ul>
+                <div className="dosage-info">
+                  <strong>Typical Dosage:</strong> {vitamin.dosage}
+                </div>
+                <div className="safety-info">
+                  <strong>Safety:</strong> {vitamin.safety}
                 </div>
               </div>
 

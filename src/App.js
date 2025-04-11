@@ -3,6 +3,8 @@ import './App.css';
 import Home from './pages/Home';
 import About from './pages/About';
 import Blog from './pages/Blog';
+import VitaminD from './pages/VitaminD';
+import Creatine from './pages/Creatine';
 
 function Navigation() {
   const location = useLocation();
@@ -37,6 +39,8 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/vitamin/d" element={<VitaminD />} />
+            <Route path="/supplement/creatine" element={<Creatine />} />
           </Routes>
         </main>
       </div>

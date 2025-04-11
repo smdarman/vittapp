@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SupplementVoting from '../components/SupplementVoting';
+import { Link } from 'react-router-dom';
 
 const vitamins = [
   { 
@@ -389,9 +390,18 @@ function Home() {
                 </div>
               </div>
 
-              <a href={`/vitamin/${vitamin.id}`} className="info-link">
+              <Link 
+                to={
+                  vitamin.name === 'Vitamin D' 
+                    ? '/vitamin/d' 
+                    : vitamin.name === 'Creatine'
+                      ? '/supplement/creatine'
+                      : '#'
+                } 
+                className="info-link"
+              >
                 Learn More
-              </a>
+              </Link>
             </div>
           ))}
         </div>

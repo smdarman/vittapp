@@ -5,6 +5,8 @@ import About from './pages/About';
 import Blog from './pages/Blog';
 import VitaminD from './pages/VitaminD';
 import Creatine from './pages/Creatine';
+import Forum from './pages/Forum';
+import ScrollToTop from './components/ScrollToTop';
 
 function Navigation() {
   const location = useLocation();
@@ -24,6 +26,9 @@ function Navigation() {
         <Link to="/blog" className={`nav-link ${location.pathname === '/blog' ? 'active' : ''}`}>
           Blog
         </Link>
+        <Link to="/forum" className={`nav-link ${location.pathname === '/forum' ? 'active' : ''}`}>
+          Forum
+        </Link>
       </div>
     </nav>
   );
@@ -34,11 +39,13 @@ function App() {
     <Router>
       <div className="App">
         <Navigation />
+        <ScrollToTop />
         <main className="main-content">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/blog" element={<Blog />} />
+            <Route path="/forum" element={<Forum />} />
             <Route path="/vitamin/d" element={<VitaminD />} />
             <Route path="/supplement/creatine" element={<Creatine />} />
           </Routes>
